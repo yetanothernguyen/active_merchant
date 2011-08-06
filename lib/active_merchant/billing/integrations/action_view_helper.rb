@@ -1,4 +1,4 @@
-require 'action_pack'
+require_library_or_gem 'action_pack'
 
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
@@ -21,7 +21,7 @@ module ActiveMerchant #:nodoc:
         #    <% service.customer :first_name => 'Cody',
         #                       :last_name => 'Fauser',
         #                       :phone => '(555)555-5555',
-        #                       :email => 'cody@example.com' %>
+        #                       :email => 'codyfauser@gmail.com' %>
         #
         #    <% service.billing_address :city => 'Ottawa',
         #                              :address1 => '21 Snowy Brook Lane',
@@ -45,7 +45,9 @@ module ActiveMerchant #:nodoc:
           integration_module = ActiveMerchant::Billing::Integrations.const_get(options.delete(:service).to_s.camelize)
 
           result = []
-          result << form_tag(integration_module.service_url, options.delete(:html) || {})
+          #result << form_tag(integration_module.service_url, options.delete(:html) || {})
+          options.delete(:html)
+          result << "<form action=\"#{integration_module.service_url}\" method=\"get\">"
           
           service_class = integration_module.const_get('Helper')
           service = service_class.new(order, account, options)
