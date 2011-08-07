@@ -26,13 +26,17 @@ module ActiveMerchant #:nodoc:
           def payer_card
             params['vpc_Card']
           end
+
+          def order
+            params['vpc_OrderInfo']
+          end
          
           def message
             params['vpc_Message']
           end
 
           def response_code
-            params['TxnResponseCode']
+            params['vpc_TxnResponseCode']
           end
 
           def acknowledge
