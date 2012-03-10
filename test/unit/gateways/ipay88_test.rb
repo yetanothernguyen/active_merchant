@@ -36,7 +36,7 @@ class Ipay88Test < Test::Unit::TestCase
   end
   
   def test_successful_recurring
-    #@gateway.expects(:ssl_post).returns(successful_recurring_response)
+    @gateway.expects(:ssl_post).returns(successful_recurring_response)
     
     response = @gateway.recurring(@amount, @credit_card, @options)
     assert_instance_of Response, response
@@ -48,7 +48,7 @@ class Ipay88Test < Test::Unit::TestCase
   end
 
   def test_unsuccessful_recurring
-    #@gateway.expects(:ssl_post).returns(failed_recurring_response)
+    @gateway.expects(:ssl_post).returns(failed_recurring_response)
     
     assert response = @gateway.recurring(@amount, @credit_card, @options)
     assert_failure response
