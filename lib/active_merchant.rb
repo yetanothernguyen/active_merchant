@@ -61,3 +61,5 @@ module ActiveMerchant #:nodoc:
     autoload :Integrations, 'active_merchant/billing/integrations'
   end
 end
+
+require 'active_merchant/railtie' if defined?(Rails) && ActiveSupport::VERSION::MAJOR >= 3
